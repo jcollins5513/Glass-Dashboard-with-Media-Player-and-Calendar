@@ -1,0 +1,34 @@
+# File Structure
+
+```
+./
+├── App.tsx
+├── ShowroomApp.tsx
+├── README.md
+├── components/
+│   ├── CustomerVideoPlayer.tsx
+│   ├── FeaturePlaceholder.tsx
+│   ├── MediaPlayer.tsx
+│   ├── NavigationButtons.tsx
+│   ├── ShowroomNavigationButtons.tsx
+│   ├── ShowroomVideoPlayer.tsx
+│   ├── TodaysAppointments.tsx
+│   ├── VehicleDetails.tsx
+│   ├── VideoPlayer.tsx
+│   ├── figma/
+│   └── ui/ (48 utility components)
+├── styles/
+│   └── globals.css
+├── types/
+│   └── index.ts
+└── utils/
+    └── shareUtils.ts
+├── scripts/
+│   └── init-typescript.sh
+```
+
+**Frameworks**
+- React with TypeScript
+- Tailwind CSS (via `tailwind-merge`)
+
+No backend or database code yet.
