@@ -3,36 +3,12 @@ import { ShowroomVideoPlayer } from './components/ShowroomVideoPlayer';
 import { VehicleDetails } from './components/VehicleDetails';
 import { ShowroomNavigationButtons } from './components/ShowroomNavigationButtons';
 import exampleImage from 'figma:asset/dada8ef1ad64f0d311c47a8ec5b1cf7ca47dbd1f.png';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-  stockNumber: string;
-}
-
-interface MediaItem {
-  id: number;
-  vehicleId: number;
-  type: 'video' | 'drone' | 'photo' | '360';
-  url: string;
-  thumbnail: string;
-  duration?: number;
-  title: string;
-}
+import { Vehicle, MediaItem } from './types';
 
 export default function ShowroomApp() {
   const [is360Mode, setIs360Mode] = useState(false);
   const [currentVehicle, setCurrentVehicle] = useState<Vehicle | null>(null);
-  const [selectedVehicles, setSelectedVehicles] = useState<number[]>([]);
+  const [selectedVehicles, setSelectedVehicles] = useState<Array<string | number>>([]);
   const [isSlideshow, setIsSlideshow] = useState(false);
 
   const handleToggle360Mode = () => {
@@ -43,7 +19,7 @@ export default function ShowroomApp() {
     setCurrentVehicle(vehicle);
   };
 
-  const handleVehicleSelectionChange = (vehicleIds: number[]) => {
+  const handleVehicleSelectionChange = (vehicleIds: Array<string | number>) => {
     setSelectedVehicles(vehicleIds);
   };
 

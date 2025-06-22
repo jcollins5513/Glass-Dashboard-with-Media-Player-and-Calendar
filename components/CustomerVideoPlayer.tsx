@@ -3,7 +3,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, RotateCcw, Maximize } from
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Vehicle, MediaItem } from '../types';
+import { Vehicle, MediaItem, VehicleStatus } from '../types';
 
 // Mock data that matches the new schema
 const mockVehicles: Vehicle[] = [
@@ -31,7 +31,7 @@ const mockVehicles: Vehicle[] = [
     sourceUrl: "https://example.com/inventory/1",
     bodyStyle: "Coupe",
     vehicleClass: "Luxury",
-    status: "available" as const,
+  status: VehicleStatus.available,
     carfaxHighlights: {
       accidents: 0,
       owners: 1,
@@ -60,7 +60,7 @@ const mockVehicles: Vehicle[] = [
     description: "Luxurious 2024 Bentley Bentayga V8 in Extreme Silver. The perfect blend of luxury SUV comfort and Bentley craftsmanship.",
     bodyStyle: "SUV",
     vehicleClass: "SUV",
-    status: "available" as const,
+  status: VehicleStatus.available,
     carfaxHighlights: {
       accidents: 0,
       owners: 1,
@@ -322,7 +322,7 @@ export function CustomerVideoPlayer({
           variant="ghost"
           size="sm"
           onClick={handlePrevious}
-          disabled={(currentVehicleIndex === 0 && currentMediaIndex === 0) || (sharedVehicleId && currentMediaIndex === 0)}
+          disabled={(currentVehicleIndex === 0 && currentMediaIndex === 0) || (Boolean(sharedVehicleId) && currentMediaIndex === 0)}
           className="text-white hover:bg-white/20 disabled:text-white/30"
         >
           <SkipBack className="w-5 h-5" />
@@ -343,7 +343,7 @@ export function CustomerVideoPlayer({
           onClick={handleNext}
           disabled={
             (currentVehicleIndex === availableVehicles.length - 1 && currentMediaIndex === vehicleMedia.length - 1) ||
-            (sharedVehicleId && currentMediaIndex === vehicleMedia.length - 1)
+            (Boolean(sharedVehicleId) && currentMediaIndex === vehicleMedia.length - 1)
           }
           className="text-white hover:bg-white/20 disabled:text-white/30"
         >

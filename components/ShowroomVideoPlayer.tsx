@@ -4,31 +4,7 @@ import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-  stockNumber: string;
-}
-
-interface MediaItem {
-  id: number;
-  vehicleId: number;
-  type: 'video' | 'drone' | 'photo' | '360';
-  url: string;
-  thumbnail: string;
-  duration?: number;
-  title: string;
-}
+import { Vehicle, MediaItem, VehicleStatus } from '../types';
 
 const mockVehicles: Vehicle[] = [
   {
@@ -39,11 +15,21 @@ const mockVehicles: Vehicle[] = [
     price: 185500,
     mileage: 450,
     color: "Beluga Black",
+    stockNumber: "BT2024001",
+    vin: "VIN1",
+    features: ["Premium Package"],
+    images: [
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop"
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
     type: "video",
     mediaUrl: "https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720",
     duration: 180,
     thumbnail: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
-    stockNumber: "BT2024001"
+    description: "",
+    vehicleClass: "Luxury",
+    status: VehicleStatus.available
   },
   {
     id: 2,
@@ -53,11 +39,21 @@ const mockVehicles: Vehicle[] = [
     price: 165800,
     mileage: 1200,
     color: "Extreme Silver",
+    stockNumber: "BT2024002",
+    vin: "VIN2",
+    features: ["Luxury"],
+    images: [
+      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop"
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
     type: "drone",
     mediaUrl: "https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720",
     duration: 120,
     thumbnail: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
-    stockNumber: "BT2024002"
+    description: "",
+    vehicleClass: "Luxury",
+    status: VehicleStatus.available
   },
   {
     id: 3,
@@ -67,10 +63,20 @@ const mockVehicles: Vehicle[] = [
     price: 195900,
     mileage: 890,
     color: "Glacier White",
+    stockNumber: "BT2024003",
+    vin: "VIN3",
+    features: ["Luxury"],
+    images: [
+      "https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=800&h=600&fit=crop"
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
     type: "360",
     mediaUrl: "https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=800&h=600&fit=crop",
-    stockNumber: "BT2024003"
+    description: "",
+    vehicleClass: "Luxury",
+    status: VehicleStatus.available
   },
   {
     id: 4,
@@ -80,23 +86,33 @@ const mockVehicles: Vehicle[] = [
     price: 225400,
     mileage: 3200,
     color: "Damson",
+    stockNumber: "BT2023004",
+    vin: "VIN4",
+    features: ["Luxury"],
+    images: [
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop"
+    ],
+    createdAt: new Date(),
+    updatedAt: new Date(),
     type: "photo",
     mediaUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=800&fit=crop",
     thumbnail: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
-    stockNumber: "BT2023004"
+    description: "",
+    vehicleClass: "Luxury",
+    status: VehicleStatus.available
   }
 ];
 
 const mockMediaItems: MediaItem[] = [
-  { id: 1, vehicleId: 1, type: 'video', url: 'https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 180, title: 'Continental GT Showcase' },
-  { id: 2, vehicleId: 1, type: 'drone', url: 'https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 90, title: 'Continental GT Aerial' },
-  { id: 3, vehicleId: 1, type: '360', url: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=400&h=300&fit=crop', title: 'Continental GT Interior 360°' },
+  { id: '1', vehicleId: '1', type: 'video', url: 'https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 180, title: 'Continental GT Showcase' },
+  { id: '2', vehicleId: '1', type: 'drone', url: 'https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 90, title: 'Continental GT Aerial' },
+  { id: '3', vehicleId: '1', type: '360', url: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=400&h=300&fit=crop', title: 'Continental GT Interior 360°' },
 ];
 
 interface ShowroomVideoPlayerProps {
   is360Mode: boolean;
   onVehicleChange: (vehicle: Vehicle) => void;
-  selectedVehicles: number[];
+  selectedVehicles: Array<string | number>;
   onMediaSelect: (media: MediaItem) => void;
   isSlideshow: boolean;
   onSlideshowToggle: () => void;
