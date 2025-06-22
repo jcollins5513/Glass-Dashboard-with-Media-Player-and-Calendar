@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, Car, Fuel, Gauge, Palette, MapPin } from 'lucide-react';
 import { Badge } from './ui/badge';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-}
+import { Vehicle } from '../types';
 
 interface VehicleSpec {
   engine: string;
@@ -24,7 +11,7 @@ interface VehicleSpec {
   features: string[];
 }
 
-const vehicleSpecs: Record<number, VehicleSpec> = {
+const vehicleSpecs: Record<string | number, VehicleSpec> = {
   1: {
     engine: "3.0L Twin-Turbo I6",
     transmission: "8-Speed Automatic",
@@ -103,7 +90,7 @@ export function VehicleDetails({ currentVehicle }: VehicleDetailsProps) {
     );
   }
 
-  const specs = vehicleSpecs[currentVehicle.id] || vehicleSpecs[1];
+  const specs = vehicleSpecs[currentVehicle.id as string | number] || vehicleSpecs[1];
 
   return (
     <div className="h-full backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-6">
@@ -188,7 +175,7 @@ export function VehicleDetails({ currentVehicle }: VehicleDetailsProps) {
         <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
           <h5 className="text-white text-sm mb-3">Key Features</h5>
           <div className="flex flex-wrap gap-2">
-            {specs.features.map((feature, index) => (
+            {specs.features.map((feature: string, index: number) => (
               <Badge 
                 key={index}
                 variant="secondary" 
