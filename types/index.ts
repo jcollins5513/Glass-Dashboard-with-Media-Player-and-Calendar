@@ -4,7 +4,7 @@ export enum VehicleStatus {
 }
 
 export interface Vehicle {
-  id: string;
+  id: string | number;
   stockNumber: string;
   vin: string;
   year: number;
@@ -29,6 +29,11 @@ export interface Vehicle {
   bodyStyle?: string;
   vehicleClass: string;
   status: VehicleStatus;
+  /** Additional media fields used by mock components */
+  mediaUrl?: string;
+  thumbnail?: string;
+  type?: 'video' | 'drone' | 'photo' | '360';
+  duration?: number;
 }
 
 export interface MediaItem {

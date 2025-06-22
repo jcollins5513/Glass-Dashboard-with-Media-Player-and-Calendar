@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, Car, Fuel, Gauge, Palette, MapPin } from 'lucide-react';
 import { Badge } from './ui/badge';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-}
+import { Vehicle } from '../types';
 
 interface VehicleSpec {
   engine: string;

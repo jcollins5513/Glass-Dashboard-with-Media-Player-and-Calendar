@@ -13,6 +13,7 @@
     /* Language and Environment */
     "target": "es2016",
     "jsx": "react-jsx",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "lib": ["es2017", "dom"],
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     // "jsx": "preserve",                                /* Specify what JSX code is generated. */
     // "libReplacement": true,                           /* Enable lib replacement. */
@@ -30,11 +31,11 @@
     "module": "esnext",
     "baseUrl": "./",
     "paths": {
-      "@radix-ui/react-slot@*": ["node_modules/@radix-ui/react-slot"],
-      "class-variance-authority@*": ["node_modules/class-variance-authority"],
-      "lucide-react@*": ["node_modules/lucide-react"],
-      "react-hook-form@*": ["node_modules/react-hook-form"],
-      "next-themes@*": ["node_modules/next-themes"]
+      "@radix-ui/react-slot": ["node_modules/@radix-ui/react-slot"],
+      "class-variance-authority": ["node_modules/class-variance-authority"],
+      "lucide-react": ["node_modules/lucide-react"],
+      "react-hook-form": ["node_modules/react-hook-form"],
+      "next-themes": ["node_modules/next-themes"]
     },                                /* Specify what module code is generated. */
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
     "moduleResolution": "bundler",                     /* Specify how TypeScript looks up a file from a given module specifier. */
