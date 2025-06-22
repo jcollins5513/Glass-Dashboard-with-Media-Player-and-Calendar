@@ -3,7 +3,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, RotateCcw, Maximize } from
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Vehicle, MediaItem } from '../types';
+import { Vehicle, MediaItem, VehicleStatus } from '../types';
 
 // Mock data that matches the new schema
 const mockVehicles: Vehicle[] = [
@@ -263,17 +263,17 @@ export function CustomerVideoPlayer({
             )}
           </div>
           
-          {/* Media Type Badge */}
-          <div className="absolute top-4 left-4">
-            <div className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
-              {getMediaTypeLabel()}
-            </div>
-          </div>
-
           {/* Media Counter */}
+          <div className="absolute top-4 right-4">
+              <div className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm" data-visible={vehicleMedia.length > 1}>
+                {currentMediaIndex + 1}/{vehicleMedia.length}
+              </div>
+            </div>
+
+          {/* Media Type Badge */}
           {vehicleMedia.length > 1 && (
-            <div className="absolute top-4 right-4">
-              <div className="bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
+            <div className="absolute top-4 right-4" data-visible={vehicleMedia.length > 1}>
+              <div className="bg-blue-500/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm flex items-center gap-2" data-visible={!!is360View}>
                 {currentMediaIndex + 1}/{vehicleMedia.length}
               </div>
             </div>
@@ -282,9 +282,11 @@ export function CustomerVideoPlayer({
           {/* 360° Indicator */}
           {is360View && (
             <div className="absolute bottom-4 left-4">
-              <div className="bg-blue-500/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-                <RotateCcw className="w-3 h-3" />
-                360° View
+              <div className="bg-black/50 backdrop-blur-sm p-4 rounded-lg" data-visible={!!is360View}>
+                <div className="flex items-center space-x-2">
+                  <RotateCcw className="w-3 h-3" />
+                  360° View
+                </div>
               </div>
             </div>
           )}

@@ -5,6 +5,9 @@
 ├── App.tsx
 ├── ShowroomApp.tsx
 ├── README.md
+├── master-plan.md
+├── granular-plan.md
+├── file-structure.md
 ├── components/
 │   ├── CustomerVideoPlayer.tsx
 │   ├── FeaturePlaceholder.tsx
@@ -21,10 +24,13 @@
 │   └── globals.css
 ├── types/
 │   └── index.ts
-└── utils/
-    └── shareUtils.ts
+├── utils/
+│   └── shareUtils.ts
 ├── scripts/
 │   └── init-typescript.sh
+├── tsconfig.json
+├── package.json
+└── package-lock.json
 ```
 
 **Frameworks**

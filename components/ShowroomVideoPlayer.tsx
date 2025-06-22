@@ -4,99 +4,116 @@ import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-  stockNumber: string;
-}
-
-interface MediaItem {
-  id: number;
-  vehicleId: number;
-  type: 'video' | 'drone' | 'photo' | '360';
-  url: string;
-  thumbnail: string;
-  duration?: number;
-  title: string;
-}
+import { Vehicle, MediaItem, VehicleStatus } from '../types';
 
 const mockVehicles: Vehicle[] = [
   {
-    id: 1,
-    make: "Bentley",
-    model: "Continental GT",
+    id: '1',
+    stockNumber: 'BT2024001',
+    vin: 'SALWR2TF6HA135026',
     year: 2024,
+    make: 'Bentley',
+    model: 'Continental GT',
     price: 185500,
     mileage: 450,
-    color: "Beluga Black",
-    type: "video",
-    mediaUrl: "https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720",
-    duration: 180,
-    thumbnail: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
-    stockNumber: "BT2024001"
+    color: 'Beluga Black',
+    description: 'Luxury Grand Tourer',
+    vehicleClass: 'Luxury',
+    status: VehicleStatus.available,
+    features: ['Leather Seats', 'Navigation', 'Heated Seats'],
+    images: ['https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop'],
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    id: 2,
-    make: "Bentley",
-    model: "Bentayga V8",
+    id: '2',
+    stockNumber: 'BT2024002',
+    vin: 'SALWR2TF6HA135027',
     year: 2024,
+    make: 'Bentley',
+    model: 'Bentayga V8',
     price: 165800,
     mileage: 1200,
-    color: "Extreme Silver",
-    type: "drone",
-    mediaUrl: "https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720",
-    duration: 120,
-    thumbnail: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
-    stockNumber: "BT2024002"
+    color: 'Extreme Silver',
+    description: 'Luxury SUV',
+    vehicleClass: 'Luxury',
+    status: VehicleStatus.available,
+    features: ['Panoramic Sunroof', 'Premium Sound System', 'Heated Seats'],
+    images: ['https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop'],
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    id: 3,
-    make: "Bentley",
-    model: "Flying Spur",
+    id: '3',
+    stockNumber: 'BT2024003',
+    vin: 'SALWR2TF6HA135028',
     year: 2024,
+    make: 'Bentley',
+    model: 'Flying Spur',
     price: 195900,
     mileage: 890,
-    color: "Glacier White",
-    type: "360",
-    mediaUrl: "https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop",
-    thumbnail: "https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=800&h=600&fit=crop",
-    stockNumber: "BT2024003"
+    color: 'Glacier White',
+    description: 'Luxury Sedan',
+    vehicleClass: 'Luxury',
+    status: VehicleStatus.available,
+    features: ['Massage Seats', 'Night Vision', 'Rear Entertainment'],
+    images: ['https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=800&h=600&fit=crop'],
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    id: 4,
-    make: "Bentley",
-    model: "Mulsanne Speed",
+    id: '4',
+    stockNumber: 'BT2023004',
+    vin: 'SALWR2TF6HA135029',
     year: 2023,
+    make: 'Bentley',
+    model: 'Mulsanne Speed',
     price: 225400,
     mileage: 3200,
-    color: "Damson",
-    type: "photo",
-    mediaUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=800&fit=crop",
-    thumbnail: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
-    stockNumber: "BT2023004"
+    color: 'Damson',
+    description: 'Flagship Luxury Sedan',
+    vehicleClass: 'Luxury',
+    status: VehicleStatus.sold,
+    features: ['Handcrafted Interior', 'Massage Seats', 'Premium Sound System'],
+    images: ['https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop'],
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }
 ];
 
 const mockMediaItems: MediaItem[] = [
-  { id: 1, vehicleId: 1, type: 'video', url: 'https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 180, title: 'Continental GT Showcase' },
-  { id: 2, vehicleId: 1, type: 'drone', url: 'https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720', thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop', duration: 90, title: 'Continental GT Aerial' },
-  { id: 3, vehicleId: 1, type: '360', url: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=400&h=300&fit=crop', title: 'Continental GT Interior 360°' },
+  {
+    id: '1',
+    vehicleId: '1',
+    type: 'video',
+    url: 'https://videos.unsplash.com/photo-1449824913935-59a10b8d2000?fm=mp4&w=1080&h=720',
+    thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+    duration: 180,
+    title: 'Continental GT Showcase'
+  },
+  {
+    id: '2',
+    vehicleId: '1',
+    type: 'drone',
+    url: 'https://videos.unsplash.com/photo-1507003211169-0a1dd7228f2d?fm=mp4&w=1080&h=720',
+    thumbnail: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop',
+    duration: 90,
+    title: 'Continental GT Aerial'
+  },
+  {
+    id: '3',
+    vehicleId: '1',
+    type: '360',
+    url: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=1200&h=800&fit=crop',
+    thumbnail: 'https://images.unsplash.com/photo-1606611013016-969ae84d8329?w=400&h=300&fit=crop',
+    title: 'Continental GT Interior 360°'
+  },
 ];
 
 interface ShowroomVideoPlayerProps {
   is360Mode: boolean;
   onVehicleChange: (vehicle: Vehicle) => void;
-  selectedVehicles: number[];
+  selectedVehicles: string[];
   onMediaSelect: (media: MediaItem) => void;
   isSlideshow: boolean;
   onSlideshowToggle: () => void;
