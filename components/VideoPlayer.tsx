@@ -3,20 +3,7 @@ import { Play, Pause, SkipBack, SkipForward, Volume2, RotateCcw, Maximize } from
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-}
+import { Vehicle } from '../types';
 
 const mockVehicles: Vehicle[] = [
   {

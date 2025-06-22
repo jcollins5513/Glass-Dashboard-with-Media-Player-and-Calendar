@@ -4,31 +4,7 @@ import { Button } from './ui/button';
 import { Slider } from './ui/slider';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-  stockNumber: string;
-}
-
-interface MediaItem {
-  id: number;
-  vehicleId: number;
-  type: 'video' | 'drone' | 'photo' | '360';
-  url: string;
-  thumbnail: string;
-  duration?: number;
-  title: string;
-}
+import { Vehicle, MediaItem } from '../types';
 
 const mockVehicles: Vehicle[] = [
   {
