@@ -1,0 +1,63 @@
+// Prisma schema for Glass Dashboard
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Vehicle {
+  id                      String         @id @default(cuid())
+  stockNumber             String         @unique
+  vin                     String         @unique
+  year                    Int
+  make                    String
+  model                   String
+  price                   Int
+  mileage                 Int
+  features                String[]
+  images                  String[]
+  createdAt               DateTime       @default(now())
+  updatedAt               DateTime       @updatedAt
+  color                   String
+  trim                    String?
+  engine                  String?
+  transmission            String?
+  description             String
+  sourceUrl               String?
+  facebookPostId          String?
+  lastFacebookPostDate    DateTime?
+  lastMarketplacePostDate DateTime?
+  carfaxHighlights        Json?
+  bodyStyle               String?
+  vehicleClass            String?        @default("SUV")
+  status                  VehicleStatus  @default(available)
+  mediaItems              MediaItem[]
+}
+
+enum VehicleStatus {
+  available
+  sold
+}
+
+model MediaItem {
+  id        String   @id @default(cuid())
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+  vehicleId String
+  type      MediaType
+  url       String
+  thumbnail String
+  duration  Int?
+  title     String
+  order     Int?
+}
+
+enum MediaType {
+  video
+  drone
+  photo
+  _360
+}
