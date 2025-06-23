@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import React from 'react';
 import type { Metadata } from 'next';
+import AuthProvider from '../components/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'Glass Dashboard',
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }
+

@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '@/App';
+import ShowroomApp from '../ShowroomApp';
 
 export default function Home() {
-  return <App />;
+  return <ShowroomApp />;
 }

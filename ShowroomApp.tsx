@@ -1,39 +1,20 @@
+'use client';
+
 import React, { useState } from 'react';
 import { ShowroomVideoPlayer } from './components/ShowroomVideoPlayer';
 import { VehicleDetails } from './components/VehicleDetails';
 import { ShowroomNavigationButtons } from './components/ShowroomNavigationButtons';
+import CalendarWidget from './components/CalendarWidget';
+import { Vehicle, MediaItem } from './types';
 // Using public/logo.svg instead of unsupported figma:asset
 const exampleImage = '/logo.svg';
 
-interface Vehicle {
-  id: number;
-  make: string;
-  model: string;
-  year: number;
-  price: number;
-  mileage: number;
-  color: string;
-  type: 'video' | 'drone' | 'photo' | '360';
-  mediaUrl: string;
-  duration?: number;
-  thumbnail: string;
-  stockNumber: string;
-}
 
-interface MediaItem {
-  id: number;
-  vehicleId: number;
-  type: 'video' | 'drone' | 'photo' | '360';
-  url: string;
-  thumbnail: string;
-  duration?: number;
-  title: string;
-}
 
 export default function ShowroomApp() {
   const [is360Mode, setIs360Mode] = useState(false);
   const [currentVehicle, setCurrentVehicle] = useState<Vehicle | null>(null);
-  const [selectedVehicles, setSelectedVehicles] = useState<number[]>([]);
+  const [selectedVehicles, setSelectedVehicles] = useState<string[]>([]);
   const [isSlideshow, setIsSlideshow] = useState(false);
 
   const handleToggle360Mode = () => {
@@ -44,7 +25,7 @@ export default function ShowroomApp() {
     setCurrentVehicle(vehicle);
   };
 
-  const handleVehicleSelectionChange = (vehicleIds: number[]) => {
+  const handleVehicleSelectionChange = (vehicleIds: string[]) => {
     setSelectedVehicles(vehicleIds);
   };
 
@@ -89,21 +70,29 @@ export default function ShowroomApp() {
           />
         </div>
 
-        {/* Vehicle Details - Takes up 25% (2x1 grid cell on top right) */}
-        <div className="col-span-2 row-span-1">
-          <VehicleDetails currentVehicle={currentVehicle} />
-        </div>
+        {/* Right Column Container */}
+        <div className="col-span-2 row-span-2 flex flex-col gap-6 overflow-hidden">
+          {/* Vehicle Details */}
+          <div className="flex-shrink-0">
+            <VehicleDetails currentVehicle={currentVehicle} />
+          </div>
 
-        {/* Showroom Navigation Buttons - Takes up 25% (2x1 grid cell on bottom right) */}
-        <div className="col-span-2 row-span-1">
-          <ShowroomNavigationButtons 
-            selectedVehicles={selectedVehicles}
-            onVehicleSelectionChange={handleVehicleSelectionChange}
-            currentVehicle={currentVehicle}
-            onMediaSelect={handleMediaSelect}
-            isSlideshow={isSlideshow}
-            onSlideshowToggle={handleSlideshowToggle}
-          />
+          {/* Calendar Widget */}
+          <div className="flex-grow overflow-y-auto">
+            <CalendarWidget />
+          </div>
+
+          {/* Showroom Navigation Buttons */}
+          <div className="flex-shrink-0">
+            <ShowroomNavigationButtons 
+              selectedVehicles={selectedVehicles}
+              onVehicleSelectionChange={handleVehicleSelectionChange}
+              currentVehicle={currentVehicle}
+              onMediaSelect={handleMediaSelect}
+              isSlideshow={isSlideshow}
+              onSlideshowToggle={handleSlideshowToggle}
+            />
+          </div>
         </div>
       </div>
 
