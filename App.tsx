@@ -1,14 +1,16 @@
+"use client";
 import React, { useState, useEffect } from 'react';
-import { CustomerVideoPlayer } from './components/CustomerVideoPlayer';
-import { VehicleDetails } from './components/VehicleDetails';
-import { NavigationButtons } from './components/NavigationButtons';
-import { ShowroomVideoPlayer } from './components/ShowroomVideoPlayer';
-import { ShowroomNavigationButtons } from './components/ShowroomNavigationButtons';
-import { Button } from './components/ui/button';
+import { CustomerVideoPlayer } from '@/components/CustomerVideoPlayer';
+import { VehicleDetails } from '@/components/VehicleDetails';
+import { NavigationButtons } from '@/components/NavigationButtons';
+import { ShowroomVideoPlayer } from '@/components/ShowroomVideoPlayer';
+import { ShowroomNavigationButtons } from '@/components/ShowroomNavigationButtons';
+import { Button } from '@/components/ui/button';
 import { Monitor, Users } from 'lucide-react';
-import { Vehicle, MediaItem } from './types';
-import { isSharedUrl, getSharedData } from './utils/shareUtils';
-import exampleImage from 'figma:asset/dada8ef1ad64f0d311c47a8ec5b1cf7ca47dbd1f.png';
+import { Vehicle, MediaItem } from '@/types';
+import { isSharedUrl, getSharedData } from '@/utils/shareUtils';
+// Using public/logo.svg to avoid unsupported figma:asset scheme
+const exampleImage = '/logo.svg';
 
 export default function App() {
   const [is360Mode, setIs360Mode] = useState(false);

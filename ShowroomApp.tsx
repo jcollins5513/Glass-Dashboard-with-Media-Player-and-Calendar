@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ShowroomVideoPlayer } from './components/ShowroomVideoPlayer';
 import { VehicleDetails } from './components/VehicleDetails';
 import { ShowroomNavigationButtons } from './components/ShowroomNavigationButtons';
-import exampleImage from 'figma:asset/dada8ef1ad64f0d311c47a8ec5b1cf7ca47dbd1f.png';
+// Using public/logo.svg instead of unsupported figma:asset
+const exampleImage = '/logo.svg';
 
 interface Vehicle {
   id: number;
